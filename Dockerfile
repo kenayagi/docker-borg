@@ -42,7 +42,6 @@ ADD sshd_config /opt/ssh/sshd_config
 RUN mkdir /var/run/sshd
 RUN rm -f /etc/ssh/ssh_host_*
 
-WORKDIR /opt/borg
 ADD start.sh /start.sh
 
 # Volume
