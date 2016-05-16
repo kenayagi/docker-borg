@@ -1,9 +1,15 @@
 # Generate SSH host key, if not exists
 if [ ! -f "/opt/ssh/ssh_host_rsa_key" ]; then
+  mkdir -p /opt/ssh/
   /usr/bin/ssh-keygen -t dsa -N "" -f /opt/ssh/ssh_host_dsa_key
   /usr/bin/ssh-keygen -t rsa -N "" -f /opt/ssh/ssh_host_rsa_key
   /usr/bin/ssh-keygen -t ecdsa -N "" -f /opt/ssh/ssh_host_ecdsa_key
   /usr/bin/ssh-keygen -t ed25519 -N "" -f /opt/ssh/ssh_host_ed25519_key
+fi
+
+if [ ! -d "/opt/borg/.ssh" ]; then
+  mkdir -p /opt/borg/.ssh/
+  touch /opt/borg/.ssh/authorized_keys
 fi
 
 touch /opt/borg/.ssh/authorized_keys
