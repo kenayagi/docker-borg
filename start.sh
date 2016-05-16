@@ -7,12 +7,10 @@ if [ ! -f "/opt/ssh/ssh_host_rsa_key" ]; then
   /usr/bin/ssh-keygen -t ed25519 -N "" -f /opt/ssh/ssh_host_ed25519_key
 fi
 
-if [ ! -d "/opt/borg/.ssh" ]; then
+if [ ! -f "/opt/borg/.ssh/authorized_keys" ]; then
   mkdir -p /opt/borg/.ssh/
   touch /opt/borg/.ssh/authorized_keys
 fi
-
-touch /opt/borg/.ssh/authorized_keys
 
 # Launch ssh server as daemon
 exec /usr/sbin/sshd -D -f /opt/ssh/sshd_config
