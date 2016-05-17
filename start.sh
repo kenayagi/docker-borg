@@ -10,6 +10,7 @@ fi
 if [ ! -f "/opt/borg/.ssh/authorized_keys" ]; then
   mkdir -p /opt/borg/.ssh/
   touch /opt/borg/.ssh/authorized_keys
+  chown -R borg:borg /opt/borg/
 fi
 
 # Launch ssh server as daemon
