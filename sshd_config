@@ -4,7 +4,7 @@ HostKey /opt/ssh/ssh_host_rsa_key
 HostKey /opt/ssh/ssh_host_dsa_key
 HostKey /opt/ssh/ssh_host_ecdsa_key
 HostKey /opt/ssh/ssh_host_ed25519_key
-UsePrivilegeSeparation yes
+UsePrivilegeSeparation no
 KeyRegenerationInterval 3600
 ServerKeyBits 1024
 SyslogFacility AUTH
@@ -14,7 +14,7 @@ PermitRootLogin without-password
 StrictModes yes
 RSAAuthentication yes
 PubkeyAuthentication yes
-AuthorizedKeysFile %h/.ssh/authorized_keys
+AuthorizedKeysFile /opt/ssh/authorized_keys
 IgnoreRhosts yes
 RhostsRSAAuthentication no
 HostbasedAuthentication no
@@ -22,7 +22,7 @@ PermitEmptyPasswords no
 ChallengeResponseAuthentication no
 PasswordAuthentication no
 PrintMotd no
-PrintLastLog yes
+PrintLastLog no
 TCPKeepAlive yes
 AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
