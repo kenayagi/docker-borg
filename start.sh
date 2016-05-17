@@ -13,4 +13,4 @@ if [ ! -f "/opt/borg/.ssh/authorized_keys" ]; then
 fi
 
 # Launch ssh server as daemon
-exec /usr/sbin/sshd -D -f /opt/ssh/sshd_config
+exec /usr/sbin/sshd -D
