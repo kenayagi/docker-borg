@@ -34,15 +34,8 @@ RUN apt-get -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev 
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Create user
-RUN groupadd --gid 500 borg && \
-    adduser --disabled-password --gecos "Borg Backup" --home /opt/borg --uid 500 --gid 500 borg && \
-    mkdir -p /opt/borg/.ssh && \
-    chown -R borg:borg /opt/borg
-
 # Setup SSH Daemon
 ADD sshd_config /etc/ssh/sshd_config
-RUN mkdir /var/run/sshd
 RUN rm -f /etc/ssh/ssh_host_*
 
 ADD start.sh /start.sh
