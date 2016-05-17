@@ -7,10 +7,9 @@ if [ ! -f "/opt/ssh/ssh_host_rsa_key" ]; then
   /usr/bin/ssh-keygen -t ed25519 -N "" -f /opt/ssh/ssh_host_ed25519_key
 fi
 
-if [ ! -f "/opt/borg/.ssh/authorized_keys" ]; then
-  mkdir -p /opt/borg/.ssh/
-  touch /opt/borg/.ssh/authorized_keys
-  chown -R borg:borg /opt/borg/
+if [ ! -f "/opt/ssh/authorized_keys" ]; then
+  mkdir -p /opt/ssh/
+  echo 'command="borg serve --restrict-to-path /path/to/repo",no-pty,no-agent-forwarding,no-port-forwarding,no-X11-forwarding,no-user-rc ssh-rsa AAAAB3...' > /opt/ssh/authorized_keys
 fi
 
 # Launch ssh server as daemon
