@@ -22,14 +22,17 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         python3 \
         python3-virtualenv \
         python3-dev \
-        python3-pip \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
-
+        python3-pip
 RUN pip3 -v install 'llfuse<2.0'
 
 # Install borg
 RUN pip3 -v install borgbackup==${BORGVERSION}
+
+# Clean up
+RUN apt-get -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev \
+    && apt-get -y autoremove --purge \
+    && apt-get -y clean \
+    && rm -rf /var/lib/apt/lists/*
 
 # Create user
 RUN groupadd --gid 500 borg && \
@@ -38,7 +41,7 @@ RUN groupadd --gid 500 borg && \
     chown -R borg:borg /opt/borg
 
 # Setup SSH Daemon
-ADD sshd_config /opt/ssh/sshd_config
+ADD sshd_config /etc/ssh/sshd_config
 RUN mkdir /var/run/sshd
 RUN rm -f /etc/ssh/ssh_host_*
 
