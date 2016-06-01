@@ -42,6 +42,7 @@ ADD start.sh /start.sh
 
 # Volume
 VOLUME /opt
+VOLUME /backups
 
 # Port
 EXPOSE 22
