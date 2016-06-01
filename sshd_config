@@ -23,7 +23,7 @@ ChallengeResponseAuthentication no
 PasswordAuthentication no
 PrintMotd no
 PrintLastLog no
-ClientAliveInterval 45
+ClientAliveInterval 55
 TCPKeepAlive yes
 AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
