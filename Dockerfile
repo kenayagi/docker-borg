@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 # Set desired borg version
-ENV BORGVERSION=1.0.10
+ENV BORGVERSION=1.1.0
 
 # Install dependencies
 RUN export DEBIAN_FRONTEND=noninteractive \
