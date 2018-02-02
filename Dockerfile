@@ -4,7 +4,7 @@ FROM debian:jessie
 ENV BORGVERSION=1.1.4
 
 # Set variables
-DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
 RUN apt-get update && \
