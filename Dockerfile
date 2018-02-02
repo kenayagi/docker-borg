@@ -1,12 +1,15 @@
 FROM debian:jessie
 
 # Set desired borg version
-ENV BORGVERSION=1.1.2
+ENV BORGVERSION=1.1.4
+
+# Set variables
+DEBIAN_FRONTEND=noninteractive
 
 # Install dependencies
-RUN export DEBIAN_FRONTEND=noninteractive \
-    && apt-get update \
-    && apt-get -y install \
+RUN apt-get update && \
+    apt-get -y upgrade && \
+    apt-get -y install \
         build-essential \
         fuse \
         libacl1 \
@@ -23,16 +26,17 @@ RUN export DEBIAN_FRONTEND=noninteractive \
         python3-virtualenv \
         python3-dev \
         python3-pip
+
 RUN pip3 -v install 'llfuse<2.0'
 
 # Install borg
 RUN pip3 -v install borgbackup==${BORGVERSION}
 
 # Clean up
-RUN apt-get -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev \
-    && apt-get -y autoremove --purge \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev && \
+    apt-get -y autoremove --purge && \
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Setup SSH Daemon
 ADD sshd_config /etc/ssh/sshd_config
