@@ -1,7 +1,7 @@
 FROM debian:jessie
 
 # Set desired borg version
-ENV BORGVERSION=1.1.4
+ENV BORGVERSION=1.1.5
 
 # Set variables
 ENV DEBIAN_FRONTEND=noninteractive
