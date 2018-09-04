@@ -7,6 +7,6 @@ AuthorizedKeysFile /opt/ssh/authorized_keys
 PasswordAuthentication no 
 
 PrintMotd no 
-PrintLastLog no 
+#PrintLastLog no 
 
 Subsystem       sftp    /usr/lib/ssh/sftp-server
