@@ -1,3 +1,5 @@
+#!/bin/sh
+
 # Generate SSH host key, if not exists
 if [ ! -f "/opt/ssh/ssh_host_rsa_key" ]; then
   mkdir -p /opt/ssh/
