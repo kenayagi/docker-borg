@@ -20,4 +20,4 @@ VOLUME /backups
 EXPOSE 22
 
 # Command
-CMD ["/bin/bash", "/start.sh"]
+CMD ["/bin/sh", "/start.sh"]
