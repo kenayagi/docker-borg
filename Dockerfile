@@ -1,15 +1,47 @@
-FROM alpine:3.8   
+FROM debian:stretch-slim
 
-# Install ssh
-RUN apk add --no-cache openssh-server
+# Set desired borg version
+ENV BORGVERSION=1.1.9
+
+# Set variables
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+RUN apt update && \
+    apt -y upgrade && \
+    apt -y install \
+        build-essential \
+        fuse \
+        libacl1 \
+        libacl1-dev \
+        libfuse-dev \
+        liblz4-1 \
+        liblz4-dev \
+        liblzma-dev \
+        libssl-dev \
+        openssh-server \
+        openssl \
+        pkg-config \
+        python3 \
+        python3-dev \
+        python3-pip \
+        python3-virtualenv
+
+RUN pip3 -v install 'llfuse<2.0'
+
+# Install borg
+RUN pip3 -v install borgbackup==${BORGVERSION}
+
+# Clean up
+RUN apt -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev && \
+    apt -y autoremove --purge && \
+    apt -y clean && \
+    rm -rf /var/lib/apt/lists/*
 
 # Setup SSH Daemon
 ADD sshd_config /etc/ssh/sshd_config
+RUN rm -f /etc/ssh/ssh_host_*
 
-# Install borg        
-RUN apk add --no-cache borgbackup
-
-# Startup script
 ADD start.sh /start.sh
 
 # Volume
@@ -20,4 +52,4 @@ VOLUME /backups
 EXPOSE 22
 
 # Command
-CMD ["/bin/sh", "/start.sh"]
+CMD ["/bin/bash", "/start.sh"]
