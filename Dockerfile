@@ -41,7 +41,7 @@ RUN apt -y remove --purge build-essential libssl-dev liblz4-dev libacl1-dev && \
 # Setup SSH Daemon
 ADD sshd_config /etc/ssh/sshd_config
 RUN rm -f /etc/ssh/ssh_host_*
-RUN mkdir -p /var/run/sshd
+RUN mkdir -p /run/sshd
 
 ADD start.sh /start.sh
 
