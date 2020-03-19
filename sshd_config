@@ -4,9 +4,11 @@ HostKey /opt/ssh/ssh_host_ecdsa_key
 HostKey /opt/ssh/ssh_host_ed25519_key
 
 AuthorizedKeysFile /opt/ssh/authorized_keys
-PasswordAuthentication no 
+PasswordAuthentication no
 
-PrintMotd no 
-#PrintLastLog no 
+MaxAuthTries 30
+
+PrintMotd no
+#PrintLastLog no
 
 Subsystem       sftp    /usr/lib/ssh/sftp-server
