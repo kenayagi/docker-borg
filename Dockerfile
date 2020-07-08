@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
 # Set desired borg version
-ENV BORGVERSION=1.1.10
+ENV BORGVERSION=1.1.13
 
 # Set variables
 ENV DEBIAN_FRONTEND=noninteractive
