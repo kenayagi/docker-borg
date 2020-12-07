@@ -15,4 +15,4 @@ if [ ! -f "/opt/ssh/authorized_keys" ]; then
 fi
 
 # Launch ssh server as daemon
-exec /usr/sbin/sshd -D
+exec /usr/sbin/sshd -D -e
